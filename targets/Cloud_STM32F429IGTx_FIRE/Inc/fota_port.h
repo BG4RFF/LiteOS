@@ -38,8 +38,8 @@
 
 #ifndef _FOTA_PORT_H_
 #define _FOTA_PORT_H_
-#include <atiny_fota_api.h>
-#include <fota_package_storage_device.h>
+#include "firmware_update/atiny_fota_api.h"
+#include "fota/fota_package_storage_device.h"
 
 
 #if defined(__cplusplus)

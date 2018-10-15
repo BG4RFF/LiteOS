@@ -49,8 +49,8 @@
 
 #include "mbedtls/net_sockets.h"
 
-#include "atiny_adapter.h"
-#include "atiny_socket.h"
+#include "osdepends/atiny_osdep.h"
+#include "sal/atiny_socket.h"
 
 
 void mbedtls_net_init(mbedtls_net_context *ctx)

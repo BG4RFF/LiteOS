@@ -5,7 +5,7 @@
 # ------------------------------------------------
 # Generic Makefile (based on gcc)
 # ------------------------------------------------
-
+include config.mk
 ######################################
 # target
 ######################################
@@ -21,26 +21,16 @@ OPT = -Og
 #######################################
 # network
 #######################################
-USE_AT_FRAMEWORK := yes
-ifeq ($(USE_AT_FRAMEWORK), yes)
+WITH_AT_FRAMEWORK := yes
+ifeq ($(WITH_AT_FRAMEWORK), yes)
 #ESP8266   # SIM900A  # NB_NEUL95
-	NETWORK_TYPE := SIM900A
+	NETWORK_TYPE := NB_NEUL95
 endif
 
 #######################################
 # bootloader
 #######################################
 USE_BOOTLOADER := no
-
-#######################################
-# fota
-#######################################
-USE_FOTA := yes
-
-#######################################
-# sota
-#######################################
-USE_SOTA := no
 
 #######################################
 # binaries
@@ -88,7 +78,7 @@ KERNEL_SRC =  \
         C_SOURCES += $(KERNEL_SRC)
 
 CMSIS_SRC =  \
-        ${wildcard $(TOP_DIR)/components/cmsis/*.c}
+        ${wildcard $(TOP_DIR)/osdepends/liteos/cmsis/*.c}
         C_SOURCES += $(CMSIS_SRC)
 
 ARCH_SRC =  \
@@ -120,18 +110,21 @@ HAL_DRIVER_SRC =  \
 HARDWARE_SRC =  \
         ${wildcard $(TOP_DIR)/targets/Cloud_STM32F429IGTx_FIRE/Hardware/Src/*.c}
         C_SOURCES += $(HARDWARE_SRC)
-
+		
+ifeq ($(WITH_LWIP), yes)
 LWIP_SRC =  \
-        ${wildcard $(TOP_DIR)/components/net/lwip-2.0.3/src/api/*.c} \
-        ${wildcard $(TOP_DIR)/components/net/lwip-2.0.3/src/core/ipv4/*.c} \
-        ${wildcard $(TOP_DIR)/components/net/lwip-2.0.3/src/core/*.c} \
-        ${wildcard $(TOP_DIR)/components/net/lwip-2.0.3/src/netif/ethernet.c}
+        ${wildcard $(TOP_DIR)/components/net/lwip/lwip-2.0.3/src/api/*.c} \
+        ${wildcard $(TOP_DIR)/components/net/lwip/lwip-2.0.3/src/core/ipv4/*.c} \
+        ${wildcard $(TOP_DIR)/components/net/lwip/lwip-2.0.3/src/core/*.c} \
+        ${wildcard $(TOP_DIR)/components/net/lwip/lwip-2.0.3/src/netif/ethernet.c}
         C_SOURCES += $(LWIP_SRC)
 
 LWIP_PORT_SRC = \
-        ${wildcard $(TOP_DIR)/components/net/lwip_port/OS/*.c}
+        ${wildcard $(TOP_DIR)/components/net/lwip/lwip_port/OS/*.c}
         C_SOURCES += $(LWIP_PORT_SRC)
+endif
 
+ifneq ($(USE_FOTA)_$(WITH_DTLS), no_no)
 MBEDTLS_SRC = \
         ${wildcard $(TOP_DIR)/components/security/mbedtls/mbedtls-2.6.0/library/*.c}
         C_SOURCES += $(MBEDTLS_SRC)
@@ -139,6 +132,7 @@ MBEDTLS_SRC = \
 MBEDTLS_PORT_SRC = \
         ${wildcard $(TOP_DIR)/components/security/mbedtls/mbedtls_port/*.c}
         C_SOURCES += $(MBEDTLS_PORT_SRC)
+endif
 
 ER_COAP_SRC = \
         ${wildcard $(TOP_DIR)/components/connectivity/lwm2m/core/er-coap-13/er-coap-13.c}
@@ -149,21 +143,33 @@ LWM2M_SRC = \
 		${wildcard $(TOP_DIR)/components/connectivity/lwm2m/examples/shared/*.c}
         C_SOURCES += $(LWM2M_SRC)
 
-OS_ADAPTER_SRC = \
-        ${wildcard $(TOP_DIR)/components/connectivity/agent_tiny/osadapter/*.c}
-        C_SOURCES += $(OS_ADAPTER_SRC)
+OS_DEPENDS_SRC = \
+        ${wildcard $(TOP_DIR)/osdepends/liteos/*.c}
+        C_SOURCES += $(OS_DEPENDS_SRC)
+
+SOCKET_ADAPTER_SRC = \
+        ${wildcard $(TOP_DIR)/components/net/sal/*.c}
+        C_SOURCES += $(SOCKET_ADAPTER_SRC)
 		
 NEWLIB_SRC = \
         ${wildcard $(TOP_DIR)/components/lib/libc/malloc.c}
         C_SOURCES += $(NEWLIB_SRC)
 
 ATINY_TINY_SRC = \
-        ${wildcard $(TOP_DIR)/components/connectivity/agent_tiny/lwm2m_client/*.c}
+        ${wildcard $(TOP_DIR)/components/connectivity/agent_tiny/atiny_lwm2m/*.c}
         C_SOURCES += $(ATINY_TINY_SRC)
 
+ATINY_LOG = \
+        ${wildcard $(TOP_DIR)/components/log/*.c}
+        C_SOURCES += $(ATINY_LOG)
+
 AGENT_DEMO_SRC = \
-        ${wildcard $(TOP_DIR)/components/connectivity/agent_tiny/examples/*.c}
+        ${wildcard $(TOP_DIR)/demos/agenttiny_lwm2m/*.c}
         C_SOURCES += $(AGENT_DEMO_SRC)
+		
+FS_DEMO_SRC = \
+        #${wildcard $(TOP_DIR)/demos/fs/*.c}
+        C_SOURCES += $(FS_DEMO_SRC)
 
 
 USER_SRC =  \
@@ -177,23 +183,29 @@ USER_SRC =  \
 
 ifeq ($(USE_SOTA), yes)
 SOTA_SRC = \
-        ${wildcard $(TOP_DIR)/components/connectivity/sota/*.c}
+        ${wildcard $(TOP_DIR)/components/ota/sota/*.c}
         C_SOURCES += $(SOTA_SRC)
 endif
 
-ifeq ($(USE_AT_FRAMEWORK), yes)
-ATADAPTOR_SRC = \
-    ${wildcard $(TOP_DIR)/components/connectivity/at_frame/*.c} \
+ifeq ($(WITH_AT_FRAMEWORK), yes)
+AT_FRAME_SRC = \
+    ${wildcard $(TOP_DIR)/components/net/at_frame/*.c} \
      $(TOP_DIR)/targets/Cloud_STM32F429IGTx_FIRE/Src/at_hal.c
-    C_SOURCES += $(ATADAPTOR_SRC)
+    C_SOURCES += $(AT_FRAME_SRC)
 
 ifeq ($(NETWORK_TYPE), ESP8266)
-    USER_DRIVERS_SRC = ${wildcard $(TOP_DIR)/drivers/devices/wifi/esp8266/*.c}
+    USER_DRIVERS_SRC = ${wildcard $(TOP_DIR)/components/net/at_device/wifi_esp8266/*.c}
 else ifeq ($(NETWORK_TYPE), SIM900A)
-    USER_DRIVERS_SRC = ${wildcard $(TOP_DIR)/drivers/devices/gprs/*.c}
+    USER_DRIVERS_SRC = ${wildcard $(TOP_DIR)/components/net/at_device/gprs_sim900a/*.c}
 else ifeq ($(NETWORK_TYPE), NB_NEUL95)
     USER_DRIVERS_SRC = \
-	${wildcard $(TOP_DIR)/drivers/devices/nb/*.c} \
+	${wildcard $(TOP_DIR)/components/net/at_device/nb_bc95/*.c} \
+	${wildcard $(TOP_DIR)/components/connectivity/nb_iot/*.c}
+else ifeq ($(NETWORK_TYPE), ALL)
+    USER_DRIVERS_SRC = \
+	${wildcard $(TOP_DIR)/components/net/at_device/wifi_esp8266/*.c} \
+	${wildcard $(TOP_DIR)/components/net/at_device/gprs_sim900a/*.c} \
+	${wildcard $(TOP_DIR)/components/net/at_device/nb_bc95/*.c} \
 	${wildcard $(TOP_DIR)/components/connectivity/nb_iot/*.c}
 endif
     C_SOURCES += $(USER_DRIVERS_SRC)
@@ -201,16 +213,13 @@ endif
 
 ifeq ($(USE_FOTA), yes)
 FOTA_SRC = \
-        ${wildcard $(TOP_DIR)/components/fota/ota/*.c} \
-        ${wildcard $(TOP_DIR)/components/fota/utility/*.c} \
-        ${wildcard $(TOP_DIR)/components/connectivity/agent_tiny/lwm2m_client/fota/*.c} 
+		${wildcard  $(TOP_DIR)/components/ota/fota/*.c}
         C_SOURCES += $(FOTA_SRC)
 
 FIRMWARE_UPDATE_SRC = \
         ${wildcard $(TOP_DIR)/components/connectivity/agent_tiny/firmware_update/*.c}
         C_SOURCES += $(FIRMWARE_UPDATE_SRC)
 		
-C_SOURCES += ${wildcard  $(TOP_DIR)/components/fota/fota_package_storage_device/*.c}
 C_SOURCES += $(TOP_DIR)/targets/Cloud_STM32F429IGTx_FIRE/Src/board.c
 C_SOURCES += $(TOP_DIR)/targets/Cloud_STM32F429IGTx_FIRE/Src/fota_port.c
 endif
@@ -249,53 +258,74 @@ AS_DEFS =
 C_DEFS =  \
         -D USE_HAL_DRIVER \
         -D STM32F429xx \
-        -D USE_MBED_TLS \
         -D MBEDTLS_CONFIG_FILE=\"los_mbedtls_config.h\" \
         -D LWM2M_LITTLE_ENDIAN \
         -D LWM2M_CLIENT_MODE \
         -D NDEBUG \
-		-D LWM2M_BOOTSTRAP \
-        -D LWIP_TIMEVAL_PRIVATE=0 \
-        -D WITH_DTLS \
-        -D ATINY_DEBUG \
-        -D LWM2M_WITH_LOGS
-#        -D SUPPORT_DTLS_SRV
-#       WITH_DTLS change the place with LWIP_TIMEVAL_PRIVATE
+        -D LWIP_TIMEVAL_PRIVATE=0 
 
 
-ifeq ($(USE_AT_FRAMEWORK), yes)
-        C_DEFS += -DWITH_AT_FRAMEWORK -DUSE_$(NETWORK_TYPE)
-else
-        C_DEFS += -D WITH_LWIP
+ifeq ($(WITH_LWIP), yes)
+		C_DEFS += -DWITH_LWIP
+endif
+ifeq ($(WITH_AT_FRAMEWORK), yes)
+		C_DEFS += -DWITH_AT_FRAMEWORK
+		ifneq ($(NETWORK_TYPE), ALL)
+		C_DEFS += -DUSE_$(NETWORK_TYPE)
+		else
+		C_DEFS += -DUSE_ESP8266 -DSIM900A -DNB_NEUL95
+		endif
+endif
+
+ifeq ($(WITH_DTLS), yes)
+		C_DEFS += -DWITH_DTLS
+endif
+
+
+ifeq ($(USE_FOTA), yes)
+		C_DEFS += -DCONFIG_FEATURE_FOTA
 endif
 
 ifeq ($(USE_SOTA), yes)
 		C_DEFS += -DWITH_SOTA
 endif
 
-ifeq ($(USE_FOTA), yes)
-		C_DEFS += -DCONFIG_FEATURE_FOTA
+ifeq ($(LWM2M_BOOTSTRAP), yes)
+		C_DEFS += -DLWM2M_BOOTSTRAP
 endif
+
+ifeq ($(SUPPORT_DTLS_SRV), yes)
+		C_DEFS += -DSUPPORT_DTLS_SRV
+endif
+
+ifeq ($(LWM2M_WITH_LOGS), yes)
+		C_DEFS += -DLWM2M_WITH_LOGS
+endif
+
+ifeq ($(ATINY_DEBUG), yes)
+		C_DEFS += -DATINY_DEBUG
+endif
+
+
+
 
 # AS includes
 AS_INCLUDES =
 
 # C includes
 KERNEL_INC = \
-        -I $(TOP_DIR)/kernel/base/include  \
-        -I $(TOP_DIR)/kernel/extended/include  \
         -I $(TOP_DIR)/kernel/include \
-        -I $(TOP_DIR)/kernel/base/core
+		-I $(TOP_DIR)/kernel/base/include \
+		-I $(TOP_DIR)/kernel/extended/include
         C_INCLUDES += $(KERNEL_INC)
 
-CMSIS_INC = \
-        -I $(TOP_DIR)/components/cmsis  \
-        -I $(TOP_DIR)/components/cmsis/2.0
-        C_INCLUDES += $(CMSIS_INC)
+INCLUDE_INC = \
+        -I $(TOP_DIR)/include
+        C_INCLUDES += $(INCLUDE_INC)
 
 ARCH_INC = \
         -I $(TOP_DIR)/arch/arm/arm-m/include \
-        -I $(TOP_DIR)/arch/arm/common/cmsis
+		-I $(TOP_DIR)/arch/arm/common/cmsis
         C_INCLUDES += $(ARCH_INC)
 
 HAL_DRIVER_INC = \
@@ -306,19 +336,20 @@ HAL_DRIVER_INC = \
 HARDWARE_INC = \
         -I $(TOP_DIR)/targets/Cloud_STM32F429IGTx_FIRE/Hardware/Inc
         C_INCLUDES += $(HARDWARE_INC)
+		
 
 LWIP_INC = \
-        -I $(TOP_DIR)/components/net/lwip-2.0.3/src/include
+        -I $(TOP_DIR)/components/net/lwip/lwip-2.0.3/src/include
         C_INCLUDES += $(LWIP_INC)
 
 LWIP_PORT_INC = \
-        -I $(TOP_DIR)/components/net/lwip_port \
-        -I $(TOP_DIR)/components/net/lwip_port/OS
+        -I $(TOP_DIR)/components/net/lwip/lwip_port \
+        -I $(TOP_DIR)/components/net/lwip/lwip_port/OS
         C_INCLUDES += $(LWIP_PORT_INC)
 
+
 MBEDTLS_INC = \
-        -I $(TOP_DIR)/components/security/mbedtls/mbedtls-2.6.0/include \
-        -I $(TOP_DIR)/components/security/mbedtls/mbedtls-2.6.0/include/mbedtls
+        -I $(TOP_DIR)/components/security/mbedtls/mbedtls-2.6.0/include
         C_INCLUDES += $(MBEDTLS_INC)
 
 MBEDTLS_PORT_INC = \
@@ -331,65 +362,18 @@ ER_COAP_INC = \
 
 LWM2M_INC = \
         -I $(TOP_DIR)/components/connectivity/lwm2m/core \
-		-I $(TOP_DIR)/components/connectivity/lwm2m//examples/shared
+		-I $(TOP_DIR)/components/connectivity/lwm2m/examples/shared
         C_INCLUDES += $(LWM2M_INC)
 
-OS_ADAPTER_INC = \
-        -I $(TOP_DIR)/components/connectivity/agent_tiny/osadapter
-        C_INCLUDES += $(OS_ADAPTER_INC)
-
-ATINY_TINY_INC = \
-        -I $(TOP_DIR)/components/connectivity/agent_tiny/lwm2m_client \
-        -I $(TOP_DIR)/components/connectivity/agent_tiny/comm/include
-        C_INCLUDES += $(ATINY_TINY_INC)
-
-AGENT_DEMO_INC = \
-        -I $(TOP_DIR)/components/connectivity/agent_tiny/examples
-        C_INCLUDES += $(AGENT_DEMO_INC)
+DEMO_INC = \
+        -I $(TOP_DIR)/demos
+        C_INCLUDES += $(DEMO_INC)
 
 USER_INC = \
 		-I $(TOP_DIR)/targets/Cloud_STM32F429IGTx_FIRE/Inc \
 		-I $(TOP_DIR)/targets/Cloud_STM32F429IGTx_FIRE/OS_CONFIG
 		C_INCLUDES += $(USER_INC)
-		
-ifeq ($(USE_FOTA), yes)
 
-FOTA_INC = \
-        -I $(TOP_DIR)/components/fota/ota \
-        -I $(TOP_DIR)/components/fota/utility \
-        -I $(TOP_DIR)/components/connectivity/agent_tiny/lwm2m_client/fota
-        C_INCLUDES += $(FOTA_INC)
-		
-FIRMWARE_UPDATE_INC = \
-        -I $(TOP_DIR)/components/connectivity/agent_tiny/firmware_update
-        C_INCLUDES += $(FIRMWARE_UPDATE_INC)
-
-
-C_INCLUDES += -I $(TOP_DIR)/components/fota/fota_package_storage_device
-endif
-
-ifeq ($(USE_SOTA), yes)
-SOTA_INC = \
-        -I $(TOP_DIR)/components/connectivity/sota
-        C_INCLUDES += $(SOTA_INC)
-endif
-
-ifeq ($(USE_AT_FRAMEWORK), yes)
-ATADAPTOR_INC = \
-        -I $(TOP_DIR)/components/connectivity/at_frame \
-        -I $(TOP_DIR)/targets/Cloud_STM32F429IGTx_FIRE/Src
-        C_INCLUDES += $(ATADAPTOR_INC)
-ifeq ($(NETWORK_TYPE), ESP8266)
-    USER_DRIVERS_INC = -I $(TOP_DIR)/drivers/devices/wifi
-else ifeq ($(NETWORK_TYPE), SIM900A)
-    USER_DRIVERS_INC = -I $(TOP_DIR)/drivers/devices/gprs
-else ifeq ($(NETWORK_TYPE), NB_NEUL95)
-    USER_DRIVERS_INC = \
-	-I $(TOP_DIR)/components/connectivity/nb_iot \
-	-I $(TOP_DIR)/drivers/devices/nb
-endif
-    C_INCLUDES += $(USER_DRIVERS_INC)
-endif
 
 
 # compile gcc flags
@@ -424,7 +408,6 @@ LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BU
 
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
-
 
 #######################################
 # build the application

@@ -34,11 +34,11 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <sys/stat.h>
-#include <los_vfs.h>
+#include "fs/sys/stat.h"
+#include "fs/los_vfs.h"
 
 #if defined (__GNUC__) || defined (__CC_ARM)
-#include <sys/fcntl.h>
+#include "fs/sys/fcntl.h"
 #endif
 
 #ifdef __GNUC__
@@ -370,7 +370,6 @@ static int jffs2_op_readdir (struct dir *dir, struct dirent *dent)
     cyg_iovec iovec;
     cyg_dirent jffs2_d;
     struct dirent * d;
-    uint32_t index;
 #if !defined (CYGPKG_FS_JFFS2_RET_DIRENT_DTYPE)
     cyg_stat s;
     struct inode *d_inode = NULL;

@@ -10,11 +10,12 @@
       <TargetName>HuaweiLiteOS</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F429IGTx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F4xx_DFP.2.11.0</PackID>
+          <PackID>Keil.STM32F4xx_DFP.2.13.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IRAM(0x20000000,0x30000) IRAM2(0x10000000,0x10000) IROM(0x08000000,0x100000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -124,47 +125,6 @@
             <HexOffset>0</HexOffset>
             <Oh166RecLen>16</Oh166RecLen>
           </OPTHX>
-          <Simulator>
-            <UseSimulator>0</UseSimulator>
-            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>1</RunToMain>
-            <RestoreBreakpoints>1</RestoreBreakpoints>
-            <RestoreWatchpoints>1</RestoreWatchpoints>
-            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
-            <RestoreFunctions>1</RestoreFunctions>
-            <RestoreToolbox>1</RestoreToolbox>
-            <LimitSpeedToRealTime>0</LimitSpeedToRealTime>
-            <RestoreSysVw>1</RestoreSysVw>
-          </Simulator>
-          <Target>
-            <UseTarget>1</UseTarget>
-            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>0</RunToMain>
-            <RestoreBreakpoints>1</RestoreBreakpoints>
-            <RestoreWatchpoints>1</RestoreWatchpoints>
-            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
-            <RestoreFunctions>0</RestoreFunctions>
-            <RestoreToolbox>1</RestoreToolbox>
-            <RestoreTracepoints>1</RestoreTracepoints>
-            <RestoreSysVw>1</RestoreSysVw>
-          </Target>
-          <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>12</TargetSelection>
-          <SimDlls>
-            <CpuDll></CpuDll>
-            <CpuDllArguments></CpuDllArguments>
-            <PeripheralDll></PeripheralDll>
-            <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
-          </SimDlls>
-          <TargetDlls>
-            <CpuDll></CpuDll>
-            <CpuDllArguments></CpuDllArguments>
-            <PeripheralDll></PeripheralDll>
-            <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
-            <Driver>BIN\CMSIS_AGDI.dll</Driver>
-          </TargetDlls>
         </DebugOption>
         <Utilities>
           <Flash1>
@@ -229,6 +189,7 @@
             <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
+            <nSecure>0</nSecure>
             <RoSelD>3</RoSelD>
             <RwSelD>4</RwSelD>
             <CodeSel>0</CodeSel>
@@ -362,14 +323,20 @@
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
+            <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
             <v6LangP>1</v6LangP>
+            <vShortEn>1</vShortEn>
+            <vShortWch>1</vShortWch>
+            <v6Lto>0</v6Lto>
+            <v6WtE>0</v6WtE>
+            <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>--diag_suppress=1,47,177,186,223,1295</MiscControls>
-              <Define>USE_HAL_DRIVER, STM32F429xx,USE_MBED_TLS,MBEDTLS_CONFIG_FILE=&lt;los_mbedtls_config.h&gt;,LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,NDEBUG,USE_NB_NEUL95,WITH_AT_FRAMEWORK,LWM2M_WITH_LOGS,CONFIG_FEATURE_FOTA</Define>
+              <MiscControls>--diag_suppress=1,47,177,186,223,1294,1295</MiscControls>
+              <Define>USE_HAL_DRIVER, STM32F429xx,USE_MBED_TLS,MBEDTLS_CONFIG_FILE=&lt;los_mbedtls_config.h&gt;,LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,NDEBUG,USE_NB_NEUL95,WITH_LWIP,WITH_AT_FRAMEWORK,LWM2M_WITH_LOGS,CONFIG_FEATURE_FOTA,AT_NBONLY</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Inc;..\..\..\components\cmsis;..\..\..\components\cmsis\1.0;..\..\..\components\cmsis\2.0;..\..\..\kernel\base\include;..\..\..\kernel\include;..\..\..\kernel\extended\include;..\OS_CONFIG;..\..\..\arch\arm\arm-m\include;..\..\..\arch\arm\arm-m\cortex-m4;..\..\..\examples\include;..\..\..\test\include;..\Drivers\STM32F4xx_HAL_Driver\Inc;..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;..\..\..\components\net\lwip-2.0.3\src\include;..\..\..\components\net\lwip_port;..\..\..\components\net\lwip_port\OS;..\..\..\components\connectivity\lwm2m\core\er-coap-13;..\..\..\components\connectivity\lwm2m\core;..\..\..\components\connectivity\lwm2m\examples\shared;..\..\..\components\connectivity\lwm2m\examples\client;..\..\..\components\security\mbedtls\mbedtls_port;..\..\..\components\security\mbedtls\mbedtls-2.6.0\include;..\..\..\components\security\mbedtls\mbedtls-2.6.0\include\mbedtls;..\..\..\components\connectivity\agent_tiny\comm\include;..\..\..\components\connectivity\agent_tiny\lwm2m_client;..\..\..\components\connectivity\agent_tiny\examples;..\..\..\components\connectivity\agent_tiny\osadapter;..\Hardware\Inc;..\..\..\components\connectivity\at_frame;..\..\..\drivers\devices\wifi;..\..\..\drivers\devices\gprs;..\..\..\drivers\devices\nb;..\..\..\components\connectivity\nb_iot;..\..\..\components\fota\fota_package_storage_device;..\..\..\components\fota\ota;..\..\..\components\fota\utility;..\..\..\components\connectivity\agent_tiny\firmware_update;..\..\..\components\connectivity\agent_tiny\lwm2m_client\fota;..\..\..\components\net\ppp_port\osport;..\..\..\components\connectivity\lwm2m\examples\shared</IncludePath>
+              <IncludePath>..\Inc;..\..\..\include\osdepends\liteos;..\OS_CONFIG;..\Drivers\STM32F4xx_HAL_Driver\Inc;..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;..\..\..\components\connectivity\lwm2m\core\er-coap-13;..\..\..\components\connectivity\lwm2m\core;..\..\..\components\connectivity\lwm2m\examples\shared;..\..\..\components\connectivity\lwm2m\examples\client;..\..\..\components\security\mbedtls\mbedtls_port;..\..\..\components\security\mbedtls\mbedtls-2.6.0\include;..\..\..\include;..\Hardware\Inc;..\..\..\demos;..\..\..\components\fs\include;..\..\..\components\fs\spiffs\spiffs_git\src;..\..\..\components\fs\spiffs\spiffs_git\src\default;..\..\..\components\fs\fatfs\ff13b\source;..\..\..\components\fs\jffs2;..\..\..\components\fs\jffs2\src;..\..\..\components\fs\jffs2\port;..\..\..\kernel\include;..\..\..\kernel\base\include;..\..\..\kernel\extended\include;..\..\..\arch\arm\arm-m\include;..\..\..\arch\arm\common\cmsis;..\..\..\components\net\lwip\lwip-2.0.3\src\include;..\..\..\components\net\lwip\lwip_port;..\..\..\components\net\lwip\lwip_port\OS</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -382,6 +349,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls>--diag_suppress=A1581W</MiscControls>
               <Define></Define>
@@ -423,11 +391,6 @@
           <GroupName>user</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\main.c</FilePath>
-            </File>
-            <File>
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\system_stm32f4xx.c</FilePath>
@@ -443,11 +406,6 @@
               <FilePath>..\Src\sys_init.c</FilePath>
             </File>
             <File>
-              <FileName>eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\eth.c</FilePath>
-            </File>
-            <File>
               <FileName>fota_port.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\fota_port.c</FilePath>
@@ -457,25 +415,40 @@
               <FileType>1</FileType>
               <FilePath>..\Src\at_hal.c</FilePath>
             </File>
+            <File>
+              <FileName>spiffs_stm32f4xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\spiffs_stm32f4xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_stm32f4xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\fatfs_stm32f4xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_stm32f4xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\jffs2_stm32f4xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>eth.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\eth.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>drivers</GroupName>
+          <GroupName>at_device</GroupName>
           <Files>
-            <File>
-              <FileName>sim900a.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\drivers\devices\gprs\sim900a.c</FilePath>
-            </File>
             <File>
               <FileName>bc95.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\drivers\devices\nb\bc95.c</FilePath>
-            </File>
-            <File>
-              <FileName>esp8266.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\drivers\devices\wifi\esp8266\esp8266.c</FilePath>
+              <FilePath>..\..\..\components\net\at_device\nb_bc95\bc95.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -485,7 +458,7 @@
             <File>
               <FileName>cmsis_liteos.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\cmsis\cmsis_liteos.c</FilePath>
+              <FilePath>..\..\..\osdepends\liteos\cmsis\cmsis_liteos.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -746,196 +719,6 @@
               <FileName>hal_spi_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\Src\hal_spi_flash.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>lwip</GroupName>
-          <Files>
-            <File>
-              <FileName>api_lib.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\api_lib.c</FilePath>
-            </File>
-            <File>
-              <FileName>api_msg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\api_msg.c</FilePath>
-            </File>
-            <File>
-              <FileName>err.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\err.c</FilePath>
-            </File>
-            <File>
-              <FileName>netbuf.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\netbuf.c</FilePath>
-            </File>
-            <File>
-              <FileName>netdb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\netdb.c</FilePath>
-            </File>
-            <File>
-              <FileName>netifapi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\netifapi.c</FilePath>
-            </File>
-            <File>
-              <FileName>sockets.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\sockets.c</FilePath>
-            </File>
-            <File>
-              <FileName>tcpip.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\tcpip.c</FilePath>
-            </File>
-            <File>
-              <FileName>ip4_frag.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\ip4_frag.c</FilePath>
-            </File>
-            <File>
-              <FileName>ip4_addr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\ip4_addr.c</FilePath>
-            </File>
-            <File>
-              <FileName>ip4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\ip4.c</FilePath>
-            </File>
-            <File>
-              <FileName>igmp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\igmp.c</FilePath>
-            </File>
-            <File>
-              <FileName>icmp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\icmp.c</FilePath>
-            </File>
-            <File>
-              <FileName>etharp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\etharp.c</FilePath>
-            </File>
-            <File>
-              <FileName>dhcp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\dhcp.c</FilePath>
-            </File>
-            <File>
-              <FileName>autoip.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\autoip.c</FilePath>
-            </File>
-            <File>
-              <FileName>def.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\def.c</FilePath>
-            </File>
-            <File>
-              <FileName>dns.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\dns.c</FilePath>
-            </File>
-            <File>
-              <FileName>inet_chksum.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\inet_chksum.c</FilePath>
-            </File>
-            <File>
-              <FileName>init.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\init.c</FilePath>
-            </File>
-            <File>
-              <FileName>ip.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ip.c</FilePath>
-            </File>
-            <File>
-              <FileName>mem.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\mem.c</FilePath>
-            </File>
-            <File>
-              <FileName>memp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\memp.c</FilePath>
-            </File>
-            <File>
-              <FileName>netif.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\netif.c</FilePath>
-            </File>
-            <File>
-              <FileName>pbuf.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\pbuf.c</FilePath>
-            </File>
-            <File>
-              <FileName>raw.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\raw.c</FilePath>
-            </File>
-            <File>
-              <FileName>stats.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\stats.c</FilePath>
-            </File>
-            <File>
-              <FileName>sys.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\sys.c</FilePath>
-            </File>
-            <File>
-              <FileName>tcp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\tcp.c</FilePath>
-            </File>
-            <File>
-              <FileName>tcp_in.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\tcp_in.c</FilePath>
-            </File>
-            <File>
-              <FileName>tcp_out.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\tcp_out.c</FilePath>
-            </File>
-            <File>
-              <FileName>timeouts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\timeouts.c</FilePath>
-            </File>
-            <File>
-              <FileName>udp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\udp.c</FilePath>
-            </File>
-            <File>
-              <FileName>ethernet.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ethernet.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>lwip_port</GroupName>
-          <Files>
-            <File>
-              <FileName>ethernetif.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip_port\OS\ethernetif.c</FilePath>
-            </File>
-            <File>
-              <FileName>sys_arch.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip_port\OS\sys_arch.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1325,16 +1108,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>er-coap</GroupName>
-          <Files>
-            <File>
-              <FileName>er-coap-13.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\er-coap-13\er-coap-13.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>lwm2m</GroupName>
           <Files>
             <File>
@@ -1422,96 +1195,26 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\components\connectivity\lwm2m\examples\shared\commandline.c</FilePath>
             </File>
+            <File>
+              <FileName>er-coap-13.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\lwm2m\core\er-coap-13\er-coap-13.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>os_adapter</GroupName>
+          <GroupName>os_depends</GroupName>
           <Files>
             <File>
-              <FileName>atiny_adapter.c</FileName>
+              <FileName>atiny_osdep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\osadapter\atiny_adapter.c</FilePath>
-            </File>
-            <File>
-              <FileName>atiny_socket.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\osadapter\atiny_socket.c</FilePath>
+              <FilePath>..\..\..\osdepends\liteos\atiny_osdep.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>atiny_tiny</GroupName>
           <Files>
-            <File>
-              <FileName>agenttiny.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\agenttiny.c</FilePath>
-            </File>
-            <File>
-              <FileName>atiny_log.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\atiny_log.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_access_control.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_access_control.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_binary_app_data_container.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_binary_app_data_container.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_connectivity_moni.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_connectivity_moni.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_connectivity_stat.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_connectivity_stat.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_device.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_device.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_firmware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_firmware.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_location.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_location.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_security.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_security.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_server.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_server.c</FilePath>
-            </File>
-            <File>
-              <FileName>platform_adapter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\platform_adapter.c</FilePath>
-            </File>
-            <File>
-              <FileName>atiny_rpt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\atiny_rpt.c</FilePath>
-            </File>
-            <File>
-              <FileName>connection.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\connection.c</FilePath>
-            </File>
             <File>
               <FileName>firmware_update.c</FileName>
               <FileType>1</FileType>
@@ -1520,32 +1223,102 @@
             <File>
               <FileName>atiny_fota_manager.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\fota\atiny_fota_manager.c</FilePath>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\firmware_update\atiny_fota_manager.c</FilePath>
             </File>
             <File>
               <FileName>atiny_fota_state.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\fota\atiny_fota_state.c</FilePath>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\firmware_update\atiny_fota_state.c</FilePath>
             </File>
             <File>
               <FileName>atiny_update_info.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\fota\atiny_update_info.c</FilePath>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\firmware_update\atiny_update_info.c</FilePath>
+            </File>
+            <File>
+              <FileName>agenttiny.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\agenttiny.c</FilePath>
+            </File>
+            <File>
+              <FileName>atiny_rpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\atiny_rpt.c</FilePath>
+            </File>
+            <File>
+              <FileName>connection.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\connection.c</FilePath>
+            </File>
+            <File>
+              <FileName>object_access_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\object_access_control.c</FilePath>
+            </File>
+            <File>
+              <FileName>object_binary_app_data_container.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\object_binary_app_data_container.c</FilePath>
+            </File>
+            <File>
+              <FileName>object_connectivity_moni.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\object_connectivity_moni.c</FilePath>
+            </File>
+            <File>
+              <FileName>object_connectivity_stat.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\object_connectivity_stat.c</FilePath>
+            </File>
+            <File>
+              <FileName>object_device.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\object_device.c</FilePath>
+            </File>
+            <File>
+              <FileName>object_firmware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\object_firmware.c</FilePath>
+            </File>
+            <File>
+              <FileName>object_location.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\object_location.c</FilePath>
+            </File>
+            <File>
+              <FileName>object_security.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\object_security.c</FilePath>
+            </File>
+            <File>
+              <FileName>object_server.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\object_server.c</FilePath>
+            </File>
+            <File>
+              <FileName>platform_adapter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\platform_adapter.c</FilePath>
+            </File>
+            <File>
+              <FileName>util_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\connectivity\agent_tiny\atiny_lwm2m\util_timer.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>agent_demo</GroupName>
+          <GroupName>atiny_demo</GroupName>
           <Files>
-            <File>
-              <FileName>agent_tiny_demo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\examples\agent_tiny_demo.c</FilePath>
-            </File>
             <File>
               <FileName>agent_tiny_cmd_ioctl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\examples\agent_tiny_cmd_ioctl.c</FilePath>
+              <FilePath>..\..\..\demos\agenttiny_lwm2m\agent_tiny_cmd_ioctl.c</FilePath>
+            </File>
+            <File>
+              <FileName>agent_tiny_demo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\demos\agenttiny_lwm2m\agent_tiny_demo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1553,14 +1326,14 @@
           <GroupName>at_framework</GroupName>
           <Files>
             <File>
-              <FileName>at_api_interface.c</FileName>
+              <FileName>at_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\at_frame\at_api_interface.c</FilePath>
+              <FilePath>..\..\..\components\net\at_frame\at_api.c</FilePath>
             </File>
             <File>
-              <FileName>atadapter.c</FileName>
+              <FileName>at_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\at_frame\atadapter.c</FilePath>
+              <FilePath>..\..\..\components\net\at_frame\at_main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1578,234 +1351,539 @@
           <GroupName>fota</GroupName>
           <Files>
             <File>
-              <FileName>ota.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\ota\ota.c</FilePath>
-            </File>
-            <File>
-              <FileName>ota_default.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\ota\ota_default.c</FilePath>
-            </File>
-            <File>
-              <FileName>ota_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\utility\ota_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>ota_sha256.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\utility\ota_sha256.c</FilePath>
-            </File>
-            <File>
               <FileName>fota_firmware_writer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\fota_package_storage_device\fota_firmware_writer.c</FilePath>
-            </File>
-            <File>
-              <FileName>fota_package_head.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\fota_package_storage_device\fota_package_head.c</FilePath>
-            </File>
-            <File>
-              <FileName>fota_package_storage_device.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\fota_package_storage_device\fota_package_storage_device.c</FilePath>
+              <FilePath>..\..\..\components\ota\fota\fota_firmware_writer.c</FilePath>
             </File>
             <File>
               <FileName>fota_package_checksum.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\fota_package_storage_device\fota_package_checksum.c</FilePath>
+              <FilePath>..\..\..\components\ota\fota\fota_package_checksum.c</FilePath>
+            </File>
+            <File>
+              <FileName>fota_package_head.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\ota\fota\fota_package_head.c</FilePath>
+            </File>
+            <File>
+              <FileName>fota_package_sha256.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\ota\fota\fota_package_sha256.c</FilePath>
+            </File>
+            <File>
+              <FileName>fota_package_sha256_rsa2048.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\ota\fota\fota_package_sha256_rsa2048.c</FilePath>
+            </File>
+            <File>
+              <FileName>fota_package_storage_device.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\ota\fota\fota_package_storage_device.c</FilePath>
+            </File>
+            <File>
+              <FileName>ota.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\ota\fota\ota.c</FilePath>
+            </File>
+            <File>
+              <FileName>ota_crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\ota\fota\ota_crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>ota_default.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\ota\fota\ota_default.c</FilePath>
+            </File>
+            <File>
+              <FileName>ota_sha256.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\ota\fota\ota_sha256.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>ppp</GroupName>
-          <Files>
-            <File>
-              <FileName>auth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\auth.c</FilePath>
-            </File>
-            <File>
-              <FileName>ccp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\ccp.c</FilePath>
-            </File>
-            <File>
-              <FileName>chap_ms.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\chap_ms.c</FilePath>
-            </File>
-            <File>
-              <FileName>chap-md5.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\chap-md5.c</FilePath>
-            </File>
-            <File>
-              <FileName>chap-new.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\chap-new.c</FilePath>
-            </File>
-            <File>
-              <FileName>demand.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\demand.c</FilePath>
-            </File>
-            <File>
-              <FileName>eap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\eap.c</FilePath>
-            </File>
-            <File>
-              <FileName>ecp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\ecp.c</FilePath>
-            </File>
-            <File>
-              <FileName>eui64.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\eui64.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\fsm.c</FilePath>
-            </File>
-            <File>
-              <FileName>ipcp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\ipcp.c</FilePath>
-            </File>
-            <File>
-              <FileName>ipv6cp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\ipv6cp.c</FilePath>
-            </File>
-            <File>
-              <FileName>lcp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\lcp.c</FilePath>
-            </File>
-            <File>
-              <FileName>magic.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\magic.c</FilePath>
-            </File>
-            <File>
-              <FileName>mppe.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\mppe.c</FilePath>
-            </File>
-            <File>
-              <FileName>multilink.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\multilink.c</FilePath>
-            </File>
-            <File>
-              <FileName>ppp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\ppp.c</FilePath>
-            </File>
-            <File>
-              <FileName>pppapi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\pppapi.c</FilePath>
-            </File>
-            <File>
-              <FileName>pppcrypt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\pppcrypt.c</FilePath>
-            </File>
-            <File>
-              <FileName>pppos.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\pppos.c</FilePath>
-            </File>
-            <File>
-              <FileName>upap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\upap.c</FilePath>
-            </File>
-            <File>
-              <FileName>utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\utils.c</FilePath>
-            </File>
-            <File>
-              <FileName>vj.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\vj.c</FilePath>
-            </File>
-            <File>
-              <FileName>arc4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\polarssl\arc4.c</FilePath>
-            </File>
-            <File>
-              <FileName>des.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\polarssl\des.c</FilePath>
-            </File>
-            <File>
-              <FileName>md4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\polarssl\md4.c</FilePath>
-            </File>
-            <File>
-              <FileName>md5.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\polarssl\md5.c</FilePath>
-            </File>
-            <File>
-              <FileName>sha1.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ppp\polarssl\sha1.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>pppport</GroupName>
-          <Files>
-            <File>
-              <FileName>iodev.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\ppp_port\osport\iodev.c</FilePath>
-            </File>
-            <File>
-              <FileName>kernel.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\ppp_port\osport\kernel.c</FilePath>
-            </File>
-            <File>
-              <FileName>osport.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\..\components\net\ppp_port\osport\osport.h</FilePath>
-            </File>
-            <File>
-              <FileName>ring.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\ppp_port\osport\ring.c</FilePath>
-            </File>
-            <File>
-              <FileName>atcmd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\ppp_port\ppppos\atcmd.c</FilePath>
-            </File>
-            <File>
-              <FileName>demo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\ppp_port\ppppos\demo.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>newlib</GroupName>
+          <GroupName>atiny_dep</GroupName>
           <Files>
             <File>
               <FileName>malloc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\lib\libc\malloc.c</FilePath>
+            </File>
+            <File>
+              <FileName>atiny_socket.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\sal\atiny_socket.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>vfs</GroupName>
+          <Files>
+            <File>
+              <FileName>los_vfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\vfs\los_vfs.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>spiffs</GroupName>
+          <Files>
+            <File>
+              <FileName>los_spiffs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\spiffs\los_spiffs.c</FilePath>
+            </File>
+            <File>
+              <FileName>spiffs_cache.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\spiffs\spiffs_git\src\spiffs_cache.c</FilePath>
+            </File>
+            <File>
+              <FileName>spiffs_check.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\spiffs\spiffs_git\src\spiffs_check.c</FilePath>
+            </File>
+            <File>
+              <FileName>spiffs_gc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\spiffs\spiffs_git\src\spiffs_gc.c</FilePath>
+            </File>
+            <File>
+              <FileName>spiffs_hydrogen.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\spiffs\spiffs_git\src\spiffs_hydrogen.c</FilePath>
+            </File>
+            <File>
+              <FileName>spiffs_nucleus.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\spiffs\spiffs_git\src\spiffs_nucleus.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>fatfs</GroupName>
+          <Files>
+            <File>
+              <FileName>los_fatfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\fatfs\los_fatfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\fatfs\ff13b\source\diskio.c</FilePath>
+            </File>
+            <File>
+              <FileName>ff.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\fatfs\ff13b\source\ff.c</FilePath>
+            </File>
+            <File>
+              <FileName>ffsystem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\fatfs\ff13b\source\ffsystem.c</FilePath>
+            </File>
+            <File>
+              <FileName>ffunicode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\fatfs\ff13b\source\ffunicode.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>jffs2</GroupName>
+          <Files>
+            <File>
+              <FileName>los_jffs2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\los_jffs2.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_build.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_build.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_compr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_compr.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_compr_rtime.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_compr_rtime.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_compr_rubin.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_compr_rubin.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_compr_zlib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_compr_zlib.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_debug.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_dir.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_dir.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_erase.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_erase.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_gc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_gc.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_malloc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_malloc.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_nodelist.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_nodelist.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_nodemgmt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_nodemgmt.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_rbtree.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_rbtree.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_read.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_read.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_readinode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_readinode.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_scan.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_scan.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_write.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\src\jffs2_write.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_flashio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\port\jffs2_flashio.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_gcthread.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\port\jffs2_gcthread.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_os.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\port\jffs2_os.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\port\jffs2_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_slab.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\port\jffs2_slab.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_spinlock.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\port\jffs2_spinlock.c</FilePath>
+            </File>
+            <File>
+              <FileName>jffs2_wait.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\port\jffs2_wait.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>jffs2/cyg</GroupName>
+          <Files>
+            <File>
+              <FileName>adler32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\cyg\compress\adler32.c</FilePath>
+            </File>
+            <File>
+              <FileName>compress.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\cyg\compress\compress.c</FilePath>
+            </File>
+            <File>
+              <FileName>deflate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\cyg\compress\deflate.c</FilePath>
+            </File>
+            <File>
+              <FileName>inffast.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\cyg\compress\inffast.c</FilePath>
+            </File>
+            <File>
+              <FileName>inflate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\cyg\compress\inflate.c</FilePath>
+            </File>
+            <File>
+              <FileName>inftrees.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\cyg\compress\inftrees.c</FilePath>
+            </File>
+            <File>
+              <FileName>trees.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\cyg\compress\trees.c</FilePath>
+            </File>
+            <File>
+              <FileName>zutil.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\cyg\compress\zutil.c</FilePath>
+            </File>
+            <File>
+              <FileName>crc32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fs\jffs2\cyg\crc\crc32.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>fs_demo</GroupName>
+          <Files>
+            <File>
+              <FileName>fs_demo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\demos\fs\fs_demo.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>log</GroupName>
+          <Files>
+            <File>
+              <FileName>atiny_log.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\log\atiny_log.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>lwip</GroupName>
+          <Files>
+            <File>
+              <FileName>api_lib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\api\api_lib.c</FilePath>
+            </File>
+            <File>
+              <FileName>api_msg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\api\api_msg.c</FilePath>
+            </File>
+            <File>
+              <FileName>err.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\api\err.c</FilePath>
+            </File>
+            <File>
+              <FileName>netbuf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\api\netbuf.c</FilePath>
+            </File>
+            <File>
+              <FileName>netdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\api\netdb.c</FilePath>
+            </File>
+            <File>
+              <FileName>netifapi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\api\netifapi.c</FilePath>
+            </File>
+            <File>
+              <FileName>sockets.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\api\sockets.c</FilePath>
+            </File>
+            <File>
+              <FileName>tcpip.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\api\tcpip.c</FilePath>
+            </File>
+            <File>
+              <FileName>def.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\def.c</FilePath>
+            </File>
+            <File>
+              <FileName>dns.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\dns.c</FilePath>
+            </File>
+            <File>
+              <FileName>inet_chksum.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\inet_chksum.c</FilePath>
+            </File>
+            <File>
+              <FileName>init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\init.c</FilePath>
+            </File>
+            <File>
+              <FileName>ip.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\ip.c</FilePath>
+            </File>
+            <File>
+              <FileName>mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>memp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\memp.c</FilePath>
+            </File>
+            <File>
+              <FileName>netif.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\netif.c</FilePath>
+            </File>
+            <File>
+              <FileName>pbuf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\pbuf.c</FilePath>
+            </File>
+            <File>
+              <FileName>raw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\raw.c</FilePath>
+            </File>
+            <File>
+              <FileName>stats.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\stats.c</FilePath>
+            </File>
+            <File>
+              <FileName>sys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\sys.c</FilePath>
+            </File>
+            <File>
+              <FileName>tcp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\tcp.c</FilePath>
+            </File>
+            <File>
+              <FileName>tcp_in.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\tcp_in.c</FilePath>
+            </File>
+            <File>
+              <FileName>tcp_out.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\tcp_out.c</FilePath>
+            </File>
+            <File>
+              <FileName>timeouts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\timeouts.c</FilePath>
+            </File>
+            <File>
+              <FileName>udp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\udp.c</FilePath>
+            </File>
+            <File>
+              <FileName>autoip.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\ipv4\autoip.c</FilePath>
+            </File>
+            <File>
+              <FileName>dhcp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\ipv4\dhcp.c</FilePath>
+            </File>
+            <File>
+              <FileName>etharp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\ipv4\etharp.c</FilePath>
+            </File>
+            <File>
+              <FileName>icmp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\ipv4\icmp.c</FilePath>
+            </File>
+            <File>
+              <FileName>igmp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\ipv4\igmp.c</FilePath>
+            </File>
+            <File>
+              <FileName>ip4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\ipv4\ip4.c</FilePath>
+            </File>
+            <File>
+              <FileName>ip4_addr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\ipv4\ip4_addr.c</FilePath>
+            </File>
+            <File>
+              <FileName>ip4_frag.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\core\ipv4\ip4_frag.c</FilePath>
+            </File>
+            <File>
+              <FileName>ethernet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip-2.0.3\src\netif\ethernet.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>lwip_port</GroupName>
+          <Files>
+            <File>
+              <FileName>ethernetif.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip_port\OS\ethernetif.c</FilePath>
+            </File>
+            <File>
+              <FileName>sys_arch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\lwip\lwip_port\OS\sys_arch.c</FilePath>
             </File>
           </Files>
         </Group>

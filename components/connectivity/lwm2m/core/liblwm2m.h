@@ -90,7 +90,7 @@
 #define _LWM2M_CLIENT_H_
 
 #include "liblwm2m_api.h"
-#include "connection.h"
+#include "atiny_lwm2m/connection.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -100,8 +100,8 @@ extern "C" {
 #include <stdbool.h>
 #include <time.h>
 
-#include "er-coap-13.h"
-#include "atiny_adapter.h"
+#include "er-coap-13/er-coap-13.h"
+#include "osdepends/atiny_osdep.h"
 
 #ifdef LWM2M_SERVER_MODE
 #ifndef LWM2M_SUPPORT_JSON
@@ -173,7 +173,7 @@ int lwm2m_rand(void *output, size_t len);
 // Compare two session handles
 // Returns true if the two sessions identify the same peer. false otherwise.
 // userData: parameter to lwm2m_init()
-bool lwm2m_session_is_equal(void* session1, void* session2, void* userData);
+//bool lwm2m_session_is_equal(void* session1, void* session2, void* userData);
 
 /*
  * Error code

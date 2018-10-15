@@ -33,11 +33,11 @@
  *---------------------------------------------------------------------------*/
 
 #include "fota_port.h"
-#include "ota.h"
+#include "fota/ota.h"
 #include "hal_spi_flash.h"
 #include <string.h>
 #include <stdlib.h>
-#include <atiny_adapter.h>
+#include "osdepends/atiny_osdep.h"
 #include <board.h>
 
 

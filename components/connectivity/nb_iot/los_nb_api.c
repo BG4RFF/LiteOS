@@ -33,10 +33,10 @@
  *---------------------------------------------------------------------------*/
 
 #if defined(WITH_AT_FRAMEWORK) && defined(USE_NB_NEUL95)
-#include "los_nb_api.h"
-#include "at_api_interface.h"
+#include "nb_iot/los_nb_api.h"
+#include "at_frame/at_api.h"
 //#include "atiny_socket.h"
-#include "bc95.h"
+#include "at_device/bc95.h"
 
 int los_nb_init(const int8_t* host, const int8_t* port, sec_param_s* psk)
 {
@@ -59,6 +59,7 @@ int los_nb_init(const int8_t* host, const int8_t* port, sec_param_s* psk)
     while(1)
     {
         ret = nb_hw_detect();
+        printf("call nb_hw_detect,ret is %d\n",ret);
         if(ret == AT_OK)
             break;
         //LOS_TaskDelay(1000);

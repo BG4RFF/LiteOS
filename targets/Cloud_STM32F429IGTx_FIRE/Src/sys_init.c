@@ -34,7 +34,7 @@
 
 #include "sys_init.h"
 
-#ifndef AT_NBONLY
+#ifdef WITH_LWIP
 
 struct netif gnetif;
 ip4_addr_t ipaddr;
@@ -167,13 +167,13 @@ void SystemClock_Config(void)
 
     SystemCoreClockUpdate();
 }
-
+#ifdef WITH_LWIP
 void hieth_hw_init(void)
 {
     extern void ETH_IRQHandler(void);
     (void)LOS_HwiCreate(ETH_IRQn, 1, 0, ETH_IRQHandler, 0);
 }
-#ifndef AT_NBONLY
+#endif
 
 /*
  * atiny_adapter user interface
@@ -192,4 +192,4 @@ void atiny_reboot(void)
 {
     HAL_NVIC_SystemReset();
 }
-#endif
+

@@ -40,7 +40,7 @@
 
 
 #include "timing_alt.h"
-#include "atiny_adapter.h"
+#include "osdepends/atiny_osdep.h"
 
 unsigned long mbedtls_timing_get_timer(struct mbedtls_timing_hr_time *val, int reset)
 {

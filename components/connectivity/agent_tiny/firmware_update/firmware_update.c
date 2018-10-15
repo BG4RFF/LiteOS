@@ -33,10 +33,10 @@
  *---------------------------------------------------------------------------*/
 
 #include "internals.h"
-#include "agenttiny.h"
-#include "atiny_log.h"
-#include "atiny_update_info.h"
-#include "firmware_update.h"
+#include "atiny_lwm2m/agenttiny.h"
+#include "log/atiny_log.h"
+#include "firmware_update/atiny_update_info.h"
+#include "firmware_update/firmware_update.h"
 
 #define FW_BLOCK_SIZE (512)
 
